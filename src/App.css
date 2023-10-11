@@ -14,6 +14,10 @@
   margin: 5px;
 }
 
+.Task-completed{
+  border-color: greenyellow;
+}
+
 .Task-header{
   font-size: 1.5rem;
   padding: 3px;

@@ -5,7 +5,7 @@ function Board(props){
     return(
         <div className="Board">
         {props.tasks.map(task =>
-            <Task title={task.title} text={task.text}></Task>)}
+            <Task task={task} removeTask={props.removeTask} completeTask={props.completeTask}></Task>)}
         </div>
     )
 

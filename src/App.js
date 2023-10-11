@@ -3,36 +3,38 @@ import './App.css';
 import Task from './components/task';
 import Board from './components/board';
 import { useState } from 'react';
+import InputField from './components/inputField';
 
 function App() {
 
-  const [tasks, setTasks] = useState([{title: "Задача 1", text: "Понять, что такое React"}, 
-  {title: "Задача 2", text: "Сделать todo доску"}, 
-  {title: "Задача 3", text: "В процессе не умереть, проверкааааааааааааааааааааааааааааааааааааааааа"},
-  {title: "Задача 4", text: "Накидываем, набрасываем"}, 
-  {title: "Задача 5", text: "В надежде, что всё работает так, как надо, но я-то знаю"}, 
-  {title: "Задача 6", text: "Ещё чуть-чуть"}])
+  const [tasks, setTasks] = useState([])
 
-  const [newTitle, setNewTitle] = useState('');
-  const [newText, setNewText] = useState(''); 
+  function addTask(title, text){
 
-  function addTask(){
+    let newTask = {id: Math.round(Math.random()*1000), title: title, text: text, completed: false};
 
-    let newTask = {title: newTitle, text: newText};
+    setTasks([...tasks, newTask])
 
-    let tasksCopy = [...tasks];
-    tasksCopy.push(newTask);
+  }
 
-    setTasks(tasksCopy);
+  function removeTask(id){
+
+    setTasks([...tasks.filter((task) => (task.id !== id))]);
+
+  }
+
+  function completeTask(id){
+
+    setTasks([...tasks.map(
+      (task) => (task.id === id ? {...task, completed: !task.completed} : {...task})
+      )])
 
   }
 
   return (
     <div className='App'>
-      <input type='text' value={newTitle} onChange={(e) => {setNewTitle(e.target.value)}}></input>
-      <input type='text' value={newText} onChange={(e) => {setNewText(e.target.value)}}></input>
-      <button onClick={addTask}>Добавить новую задачу</button>
-      <Board tasks={tasks}></Board>
+      <InputField addTask={addTask}></InputField>
+      <Board tasks={tasks} removeTask={removeTask} completeTask={completeTask}></Board>
     </div>
   );
 }
