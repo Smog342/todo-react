@@ -4,6 +4,12 @@
   justify-items: center;
   text-align: center;
   flex-direction: column;
+}
+
+.inputField{
+
+  display: flex;
+  flex-direction: column;
 
 }
 
@@ -12,6 +18,8 @@
   border-style: solid;
   padding: 5px;
   margin: 5px;
+  border-radius: 15px;
+  width: 600px;
 }
 
 .Task-completed{
@@ -19,20 +27,91 @@
 }
 
 .Task-header{
-  font-size: 1.5rem;
+  font-family: Arial, Helvetica, sans-serif;
   padding: 3px;
   margin: 3px;
+  overflow-wrap: break-word;
 }
 
 .Task-text{
-
+  text-align: left;
+  overflow-wrap: break-word;
 }
 
 .Board{
-  height: 100%;
-  /* width: fit-content; */
   display: flex;
   flex-direction: column;
-  border-style: solid;
-  border-color: cornflowerblue;
+}
+
+.button-3 {
+  appearance: none;
+  background-color: #2ea44f;
+  border: 1px solid rgba(27, 31, 35, .15);
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 6px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+  margin: 2px;
+}
+
+.button-3:focus:not(:focus-visible):not(.focus-visible) {
+  box-shadow: none;
+  outline: none;
+}
+
+.button-3:hover {
+  background-color: #2c974b;
+}
+
+.button-3:focus {
+  box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+  outline: none;
+}
+
+.button-3:disabled {
+  background-color: #94d3a2;
+  border-color: rgba(27, 31, 35, .1);
+  color: rgba(255, 255, 255, .8);
+  cursor: default;
+}
+
+.button-3:active {
+  background-color: #298e46;
+  box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+}
+
+input{  
+  padding: 5px 12px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #24292e;
+  vertical-align: middle;
+  background-color: #ffffff;
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  outline: none;
+  box-shadow: rgba(225, 228, 232, 0.2) 0px 1px 0px 0px inset;
+}
+
+input:focus{
+  border-color: #0366d6;
+  outline: none;
+  box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
 }

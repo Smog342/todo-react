@@ -1,4 +1,12 @@
+import { useState } from "react";
+
+
 function Task(props){
+
+    const [newTitle, setNewTitle] = useState(props.task.title);
+    const [newText, setNewText] = useState(props.task.text);
+    const [titleEditable, setTitleEditable] = useState(false);
+    const [textEditable, setTextEditable] = useState(false);
 
     function completeTask(){
 
@@ -10,14 +18,41 @@ function Task(props){
         props.removeTask(props.task.id);
     }
 
+    function changeTask(){
+
+        props.changeTask(props.task.id, newTitle, newText);
+        setTitleEditable(false);
+        setTextEditable(false);
+
+    }
+
     return(
         <div className={props.task.completed ? "Task Task-completed" : "Task"}>
-            <h2 className="Task-header">{props.task.title}</h2>
-            <h3>{props.task.id}</h3>
-            <p>{props.task.text}</p>
-            <button onClick={completeTask}>Выполнено</button>
-            <button>Изменить</button>
-            <button onClick={removeTask}>Удалить</button>
+
+            {titleEditable?
+            
+            <input type="text" value={newTitle} onChange={(e) => {setNewTitle(e.target.value)}}></input> 
+            :
+            <h2 className="Task-header" onDoubleClick={() => (setTitleEditable(true))}>{props.task.title}</h2>
+            }
+
+            <div>
+
+            {textEditable?
+
+            <input type="text" value={newText} onChange={(e) => {setNewText(e.target.value)}}></input>
+            :
+            <p className="Task-text" onDoubleClick={() => (setTextEditable(true))}>{props.task.text}</p>
+
+            }
+
+            </div>
+
+            <div>
+            <button className="button-3" onClick={completeTask}>Выполнено</button>
+            <button className="button-3" onClick={changeTask}>Изменить</button>
+            <button className="button-3" onClick={removeTask}>Удалить</button>
+            </div>
         </div>
     )
 

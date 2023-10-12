@@ -4,8 +4,11 @@ function Board(props){
 
     return(
         <div className="Board">
+            {/* Отдельно создаём каждую задачу */}
         {props.tasks.map(task =>
-            <Task task={task} removeTask={props.removeTask} completeTask={props.completeTask}></Task>)}
+        // Передаём всю логику через пропсы
+            <Task task={task} removeTask={props.removeTask} completeTask={props.completeTask} changeTask={props.changeTask}>
+            </Task>)}
         </div>
     )
 
