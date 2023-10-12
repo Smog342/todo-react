@@ -7,6 +7,7 @@ function Board(props){
             {/* Отдельно создаём каждую задачу */}
         {props.tasks.sort(props.sort).map(task =>
         // Передаём всю логику через пропсы
+        //Сортируем задачи по порядку
             <Task task={task} removeTask={props.removeTask} completeTask={props.completeTask}
             changeTask={props.changeTask} swapTasks={props.swapTasks}
             setCurrentTask={props.setCurrentTask}>

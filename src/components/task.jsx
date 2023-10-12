@@ -3,12 +3,12 @@ import { useState } from "react";
 
 function Task(props){
 
-    const [newTitle, setNewTitle] = useState(props.task.title);
-    const [newText, setNewText] = useState(props.task.text);
+    const [newTitle, setNewTitle] = useState(props.task.title); //состояние заголовка
+    const [newText, setNewText] = useState(props.task.text); //состояние текста
     const [titleEditable, setTitleEditable] = useState(false);
-    const [textEditable, setTextEditable] = useState(false);
+    const [textEditable, setTextEditable] = useState(false); //состоянии возможности редактирования
 
-    function completeTask(){
+    function completeTask(){ //вызовы соответствующей логики, переданной по пропсам
 
         props.completeTask(props.task.id);
 
@@ -26,7 +26,7 @@ function Task(props){
 
     }
 
-    function dropHandler(e, task){
+    function dropHandler(e, task){ //вызов обмена задач при сбрасывании задачи на задачу
 
         e.preventDefault();
         props.swapTasks(task);
@@ -34,7 +34,7 @@ function Task(props){
 
     }
 
-    function dragEndHandler(e){
+    function dragEndHandler(e){ 
 
     }
 
@@ -44,7 +44,7 @@ function Task(props){
 
     }
 
-    function dragStartHandler(e, task){
+    function dragStartHandler(e, task){  //запоминаем, какую задачу взяли
 
         props.setCurrentTask(task);
 
@@ -52,7 +52,7 @@ function Task(props){
 
     return(
         <div draggable="true"
-        onDrop={(e) => {dropHandler(e, props.task)}}
+        onDrop={(e) => {dropHandler(e, props.task)}} //события для драга
         onDragEnd={(e) => {dragEndHandler(e)}}
         onDragLeave={(e) => {dragEndHandler(e)}}
         onDragOver={(e) => {dragOverHandler(e)}}
@@ -61,10 +61,11 @@ function Task(props){
 
             <div>
 
-                {titleEditable?
+                {titleEditable? //если можно редактировать, открывает поле ввода
             
                 <input type="text" value={newTitle} onChange={(e) => {setNewTitle(e.target.value)}}></input> 
                 :
+                //в противном случае сам текст. Если по нему дважды кликнуть, можно будет редактировать
                 <h2 className="Task-header" onDoubleClick={() => (setTitleEditable(true))}>{props.task.title}</h2>
                 }
 
@@ -72,7 +73,7 @@ function Task(props){
 
             <div>
 
-                {textEditable?
+                {textEditable? //Аналогично
 
                 <input type="text" value={newText} onChange={(e) => {setNewText(e.target.value)}}></input>
                 :

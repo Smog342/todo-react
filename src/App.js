@@ -55,6 +55,7 @@ function App() {
 
   }
 
+  //логика перемещения задач
   function swapTasks(task){
 
     setTasks([...tasks.map(
@@ -71,6 +72,7 @@ function App() {
 
   }
 
+  //сортировка задач по порядку
   function sortTasks(task1, task2){
 
     if (task1.order > task2.order){
