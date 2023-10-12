@@ -26,25 +26,59 @@ function Task(props){
 
     }
 
-    return(
-        <div className={props.task.completed ? "Task Task-completed" : "Task"}>
+    function dropHandler(e, task){
 
-            {titleEditable?
-            
-            <input type="text" value={newTitle} onChange={(e) => {setNewTitle(e.target.value)}}></input> 
-            :
-            <h2 className="Task-header" onDoubleClick={() => (setTitleEditable(true))}>{props.task.title}</h2>
-            }
+        e.preventDefault();
+        props.swapTasks(task);
+
+
+    }
+
+    function dragEndHandler(e){
+
+    }
+
+    function dragOverHandler(e){
+
+        e.preventDefault();
+
+    }
+
+    function dragStartHandler(e, task){
+
+        props.setCurrentTask(task);
+
+    }
+
+    return(
+        <div draggable="true"
+        onDrop={(e) => {dropHandler(e, props.task)}}
+        onDragEnd={(e) => {dragEndHandler(e)}}
+        onDragLeave={(e) => {dragEndHandler(e)}}
+        onDragOver={(e) => {dragOverHandler(e)}}
+        onDragStart={(e) => {dragStartHandler(e, props.task)}} 
+        className={props.task.completed ? "Task Task-completed" : "Task"}>
 
             <div>
 
-            {textEditable?
+                {titleEditable?
+            
+                <input type="text" value={newTitle} onChange={(e) => {setNewTitle(e.target.value)}}></input> 
+                :
+                <h2 className="Task-header" onDoubleClick={() => (setTitleEditable(true))}>{props.task.title}</h2>
+                }
 
-            <input type="text" value={newText} onChange={(e) => {setNewText(e.target.value)}}></input>
-            :
-            <p className="Task-text" onDoubleClick={() => (setTextEditable(true))}>{props.task.text}</p>
+            </div>
 
-            }
+            <div>
+
+                {textEditable?
+
+                <input type="text" value={newText} onChange={(e) => {setNewText(e.target.value)}}></input>
+                :
+                <p className="Task-text" onDoubleClick={() => (setTextEditable(true))}>{props.task.text}</p>
+
+                }   
 
             </div>
 

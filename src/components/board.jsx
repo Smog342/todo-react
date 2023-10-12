@@ -5,9 +5,11 @@ function Board(props){
     return(
         <div className="Board">
             {/* Отдельно создаём каждую задачу */}
-        {props.tasks.map(task =>
+        {props.tasks.sort(props.sort).map(task =>
         // Передаём всю логику через пропсы
-            <Task task={task} removeTask={props.removeTask} completeTask={props.completeTask} changeTask={props.changeTask}>
+            <Task task={task} removeTask={props.removeTask} completeTask={props.completeTask}
+            changeTask={props.changeTask} swapTasks={props.swapTasks}
+            setCurrentTask={props.setCurrentTask}>
             </Task>)}
         </div>
     )
